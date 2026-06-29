@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:categories": "tsx -r dotenv/config scripts/seed-categories.ts dotenv_config_path=.env.local"
+    "seed:categories": "tsx -r dotenv/config scripts/seed-categories.ts dotenv_config_path=.env.local",
+    "seed:demo": "tsx -r dotenv/config scripts/seed-demo-data.ts dotenv_config_path=.env.local"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
