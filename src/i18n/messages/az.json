@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Əsas səhifə",
+    "finance": "Maliyyə",
+    "tax": "Vergi",
+    "accounting": "Mühasibatlıq",
+    "announcements": "Elanlar",
+    "search": "Axtar",
+    "about": "Haqqımızda",
+    "signIn": "Daxil ol"
+  },
+  "home": {
+    "featured": "Seçilmiş",
+    "latest": "Son xəbərlər",
+    "readMore": "Ətraflı oxu"
+  },
+  "article": {
+    "summarizeWithAi": "AI ilə xülasə et",
+    "aiSummaryDisclaimer": "AI xülasəsi qüsurlu ola bilər.",
+    "readingTime": "{minutes} dəq oxuma",
+    "tags": "Teqlər",
+    "related": "Oxşar məqalələr",
+    "share": "Paylaş"
+  },
+  "announcements": {
+    "title": "Elanlar",
+    "pinned": "Sabitlənmiş"
+  },
+  "chat": {
+    "title": "Maliyyə Köməkçisi",
+    "placeholder": "Sualınızı yazın...",
+    "send": "Göndər",
+    "disclaimer": "Cavablar dərc olunmuş məqalələrə əsaslanır və hüquqi məsləhət deyil."
+  },
+  "theme": {
+    "light": "Aydın",
+    "dark": "Qaranlıq"
+  },
+  "common": {
+    "loading": "Yüklənir...",
+    "error": "Xəta baş verdi",
+    "translationPending": "Tərcümə gözləyir"
+  }
+}
