@@ -54,6 +54,6 @@ firebase deploy --only firestore:rules,firestore:indexes,storage --project <your
 ## Deploy
 
 1. Push to GitHub, import into Vercel, set the env vars above in the Vercel project settings.
-2. `vercel.json` already configures the `/api/cron/publish-scheduled` cron (every 5 minutes).
+2. `vercel.json` configures the `/api/cron/publish-scheduled` cron to run once daily (`0 0 * * *`), since Vercel Hobby plans only allow daily cron schedules. If you're on a Pro plan or higher, you can tighten this to `*/5 * * * *` for near-real-time scheduled publishing. On Hobby, for finer granularity, point an external scheduler (e.g. [cron-job.org](https://cron-job.org)) at `/api/cron/publish-scheduled` every 5 minutes, sending `Authorization: Bearer <CRON_SECRET>`.
 3. Deploy Firestore/Storage rules and indexes as shown above.
 4. `main` → production; PRs → preview deploys.
