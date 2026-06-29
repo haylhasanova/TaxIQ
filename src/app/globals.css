@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --bg: 0 0% 100%;
+  --surface: 210 20% 98%;
+  --text: 222 25% 12%;
+  --muted: 222 10% 45%;
+  --border: 220 14% 90%;
+  --primary: 222 80% 22%;
+  --accent: 160 84% 39%;
+  --warning: 38 92% 50%;
+  --danger: 0 72% 51%;
+}
+
+.dark {
+  --bg: 222 30% 8%;
+  --surface: 222 24% 12%;
+  --text: 210 20% 96%;
+  --muted: 215 15% 65%;
+  --border: 222 20% 20%;
+  --primary: 210 90% 66%;
+  --accent: 160 70% 50%;
+  --warning: 38 92% 60%;
+  --danger: 0 72% 62%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--bg));
+  --color-foreground: hsl(var(--text));
+  --color-surface: hsl(var(--surface));
+  --color-muted: hsl(var(--muted));
+  --color-border: hsl(var(--border));
+  --color-primary: hsl(var(--primary));
+  --color-accent: hsl(var(--accent));
+  --color-warning: hsl(var(--warning));
+  --color-danger: hsl(var(--danger));
+  --font-sans: var(--font-montserrat);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}

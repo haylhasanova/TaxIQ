@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function role() {
+      return request.auth.token.role;
+    }
+
+    function isPrivileged() {
+      return isSignedIn() && role() in ['editor', 'super_admin'];
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && role() == 'super_admin';
+    }
+
+    function isAuthorOf(resourceData) {
+      return isSignedIn() && resourceData.authorId == request.auth.uid;
+    }
+
+    match /articles/{articleId} {
+      allow read: if resource.data.status == 'published'
+        || isPrivileged()
+        || isAuthorOf(resource.data);
+      allow create: if isSignedIn() && role() in ['author', 'editor', 'super_admin'];
+      allow update, delete: if isPrivileged() || isAuthorOf(resource.data);
+    }
+
+    match /announcements/{announcementId} {
+      allow read: if resource.data.status == 'published' || isPrivileged();
+      allow write: if isPrivileged();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    match /media/{mediaId} {
+      allow read: if true;
+      allow create: if isSignedIn() && role() in ['author', 'editor', 'super_admin'];
+      allow update, delete: if isPrivileged() || isAuthorOf(resource.data);
+    }
+
+    match /subscribers/{subscriberId} {
+      allow create: if request.resource.data.keys().hasOnly(['email', 'locale', 'confirmed', 'createdAt']);
+      allow read: if isPrivileged();
+      allow update, delete: if isPrivileged();
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isPrivileged());
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isSuperAdmin() || (isSignedIn() && request.auth.uid == userId && request.resource.data.role == resource.data.role);
+      allow delete: if isSuperAdmin();
+    }
+
+    match /chatSessions/{sessionId} {
+      allow read, write: if isPrivileged();
+    }
+  }
+}
