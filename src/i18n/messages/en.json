@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "finance": "Finance",
+    "tax": "Tax",
+    "accounting": "Accounting",
+    "announcements": "Announcements",
+    "search": "Search",
+    "about": "About",
+    "signIn": "Sign in"
+  },
+  "home": {
+    "featured": "Featured",
+    "latest": "Latest",
+    "readMore": "Read more"
+  },
+  "article": {
+    "summarizeWithAi": "Summarize with AI",
+    "aiSummaryDisclaimer": "AI summary may be imperfect.",
+    "readingTime": "{minutes} min read",
+    "tags": "Tags",
+    "related": "Related articles",
+    "share": "Share"
+  },
+  "announcements": {
+    "title": "Announcements",
+    "pinned": "Pinned"
+  },
+  "chat": {
+    "title": "Finance Assistant",
+    "placeholder": "Type your question...",
+    "send": "Send",
+    "disclaimer": "Answers are grounded in published articles and are not legal advice."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "translationPending": "Translation pending"
+  }
+}
