@@ -37,6 +37,19 @@ export async function createAnnouncement(data: AnnouncementInput): Promise<strin
   return ref.id;
 }
 
+export async function getAnnouncementById(id: string): Promise<Announcement | null> {
+  const doc = await adminDb.collection(COLLECTION).doc(id).get();
+  if (!doc.exists) return null;
+  return { id: doc.id, ...(doc.data() as AnnouncementInput) };
+}
+
+export async function updateAnnouncement(id: string, data: Partial<AnnouncementInput>): Promise<void> {
+  await adminDb
+    .collection(COLLECTION)
+    .doc(id)
+    .update({ ...data, updatedAt: FieldValue.serverTimestamp() });
+}
+
 export async function publishAnnouncement(id: string): Promise<void> {
   await adminDb.collection(COLLECTION).doc(id).update({
     status: "published",

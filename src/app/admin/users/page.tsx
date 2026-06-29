@@ -9,25 +9,35 @@ export default async function AdminUsersPage() {
   const users = snapshot.docs.map((doc) => ({ id: doc.id, ...(doc.data() as UserDoc) }));
 
   return (
-    <div>
-      <h1 className="mb-6 text-2xl font-extrabold">Users</h1>
-      <div className="overflow-hidden rounded-xl border border-border">
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-extrabold">İstifadəçilər</h1>
+        <p className="text-sm text-muted">Rolları idarə edin (yalnız super admin)</p>
+      </div>
+      <div className="overflow-hidden rounded-xl border border-border bg-background">
         <table className="w-full text-sm">
-          <thead className="bg-surface text-left text-xs uppercase text-muted">
+          <thead className="bg-surface text-left text-xs font-bold uppercase tracking-wide text-muted">
             <tr>
-              <th className="px-4 py-3">Email</th>
-              <th className="px-4 py-3">Role</th>
+              <th className="px-5 py-3">E-poçt</th>
+              <th className="px-5 py-3">Rol</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-border">
             {users.map((user) => (
-              <tr key={user.id} className="border-t border-border">
-                <td className="px-4 py-3">{user.email}</td>
-                <td className="px-4 py-3">
+              <tr key={user.id}>
+                <td className="px-5 py-3.5 font-medium">{user.email}</td>
+                <td className="px-5 py-3.5">
                   <UserRoleSelect uid={user.uid} role={user.role} />
                 </td>
               </tr>
             ))}
+            {users.length === 0 && (
+              <tr>
+                <td colSpan={2} className="px-5 py-10 text-center text-muted">
+                  Hələ istifadəçi yoxdur.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

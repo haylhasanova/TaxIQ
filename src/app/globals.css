@@ -10,6 +10,8 @@
   --accent: 160 84% 39%;
   --warning: 38 92% 50%;
   --danger: 0 72% 51%;
+  --gold: 38 65% 47%;
+  --ink: 213 60% 14%;
 }
 
 .dark {
@@ -22,6 +24,8 @@
   --accent: 160 70% 50%;
   --warning: 38 92% 60%;
   --danger: 0 72% 62%;
+  --gold: 40 70% 58%;
+  --ink: 222 30% 8%;
 }
 
 @theme inline {
@@ -34,6 +38,8 @@
   --color-accent: hsl(var(--accent));
   --color-warning: hsl(var(--warning));
   --color-danger: hsl(var(--danger));
+  --color-gold: hsl(var(--gold));
+  --color-ink: hsl(var(--ink));
   --font-sans: var(--font-montserrat);
 }
 
