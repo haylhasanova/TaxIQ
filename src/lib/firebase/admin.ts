@@ -20,11 +20,19 @@ function getAdminApp(): App {
   });
 }
 
-const adminApp = getAdminApp();
+function lazy<T extends object>(factory: () => T): T {
+  let instance: T | undefined;
+  return new Proxy({} as T, {
+    get(_target, prop, receiver) {
+      if (!instance) instance = factory();
+      return Reflect.get(instance, prop, receiver);
+    },
+  });
+}
 
-export const adminAuth = getAuth(adminApp);
-export const adminDb = getFirestore(adminApp);
-export const adminStorage = getStorage(adminApp);
+export const adminAuth = lazy(() => getAuth(getAdminApp()));
+export const adminDb = lazy(() => getFirestore(getAdminApp()));
+export const adminStorage = lazy(() => getStorage(getAdminApp()));
 
 export type UserRole = "super_admin" | "editor" | "author" | "reader";
 
