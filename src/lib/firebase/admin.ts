@@ -3,7 +3,7 @@ import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 
-function getAdminApp(): App {
+export function getAdminApp(): App {
   if (getApps().length) return getApps()[0];
 
   const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
