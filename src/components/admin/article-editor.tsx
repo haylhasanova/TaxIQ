@@ -74,7 +74,7 @@ export function ArticleEditor({ articleId, initialArticle }: ArticleEditorProps)
     immediatelyRender: false,
     content: initialArticle?.content.az ?? "",
     extensions: [
-      StarterKit,
+      StarterKit.configure({ underline: false }),
       Underline,
       Link.configure({ HTMLAttributes: { rel: "nofollow noopener" } }),
       TiptapImage,
