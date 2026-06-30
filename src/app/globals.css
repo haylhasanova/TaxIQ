@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg: 0 0% 100%;
-  --surface: 210 20% 98%;
-  --text: 222 25% 12%;
-  --muted: 222 10% 45%;
-  --border: 220 14% 90%;
-  --primary: 222 80% 22%;
-  --accent: 160 84% 39%;
+  --bg: 240 20% 96%;
+  --surface: 0 0% 100%;
+  --text: 222 47% 10%;
+  --muted: 222 14% 50%;
+  --border: 220 18% 90%;
+  --primary: 213 68% 16%;
+  --accent: 213 68% 16%;
   --warning: 38 92% 50%;
   --danger: 0 72% 51%;
-  --gold: 38 65% 47%;
-  --ink: 213 60% 14%;
+  --gold: 38 72% 48%;
+  --ink: 213 68% 12%;
 }
 
 .dark {
   --bg: 222 30% 8%;
   --surface: 222 24% 12%;
   --text: 210 20% 96%;
-  --muted: 215 15% 65%;
+  --muted: 215 15% 55%;
   --border: 222 20% 20%;
-  --primary: 210 90% 66%;
-  --accent: 160 70% 50%;
+  --primary: 210 90% 70%;
+  --accent: 210 90% 70%;
   --warning: 38 92% 60%;
   --danger: 0 72% 62%;
   --gold: 40 70% 58%;
@@ -60,6 +60,6 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid hsl(var(--accent));
+  outline: 2px solid hsl(var(--gold));
   outline-offset: 2px;
 }
