@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireRole, AuthError } from "@/lib/auth-server";
 import { articleSchema } from "@/lib/validators/article";
 import { getArticleById, updateArticle } from "@/lib/repositories/articles";
+import { tiptapToHtml } from "@/lib/tiptap-server";
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -27,7 +28,16 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     if (!parsed.success) {
       return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
     }
-    await updateArticle(id, parsed.data);
+
+    const data = parsed.data;
+    if (data.content) {
+      data.contentHtml = {
+        az: tiptapToHtml(data.content.az),
+        en: tiptapToHtml(data.content.en),
+      };
+    }
+
+    await updateArticle(id, data);
     return NextResponse.json({ ok: true });
   } catch (error) {
     if (error instanceof AuthError) {

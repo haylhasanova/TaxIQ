@@ -16,7 +16,7 @@ export const articleSchema = z.object({
     })
     .nullable()
     .default(null),
-  categoryId: z.string().min(1),
+  categoryId: z.string().default(""),
   tags: z.array(z.string()).default([]),
   authorId: z.string().min(1),
   status: contentStatusSchema.default("draft"),

@@ -134,9 +134,21 @@ export function ArticleEditor({ articleId, initialArticle }: ArticleEditorProps)
       const payload = buildPayload(status);
       let id = articleId;
       if (id) {
-        await fetch(`/api/admin/articles/${id}`, { method: "PATCH", headers, body: JSON.stringify(payload) });
+        const res = await fetch(`/api/admin/articles/${id}`, { method: "PATCH", headers, body: JSON.stringify(payload) });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          console.error("PATCH error", err);
+          setSaved("Xəta baş verdi");
+          return;
+        }
       } else {
         const res = await fetch("/api/admin/articles", { method: "POST", headers, body: JSON.stringify(payload) });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          console.error("POST error", err);
+          setSaved("Xəta baş verdi");
+          return;
+        }
         const json = await res.json();
         id = json.id;
       }

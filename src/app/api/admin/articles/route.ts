@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireRole, AuthError } from "@/lib/auth-server";
 import { articleSchema } from "@/lib/validators/article";
 import { createArticle } from "@/lib/repositories/articles";
+import { tiptapToHtml } from "@/lib/tiptap-server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,7 +12,14 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
     }
-    const id = await createArticle(parsed.data);
+
+    const data = parsed.data;
+    data.contentHtml = {
+      az: tiptapToHtml(data.content.az),
+      en: tiptapToHtml(data.content.en),
+    };
+
+    const id = await createArticle(data);
     return NextResponse.json({ id }, { status: 201 });
   } catch (error) {
     if (error instanceof AuthError) {
